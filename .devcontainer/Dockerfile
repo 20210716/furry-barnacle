@@ -20,3 +20,5 @@ RUN if [ "${INSTALL_NODE}" = "true" ]; then su vscode -c "umask 0002 && . /usr/l
 
 # [Optional] Uncomment this line to install global node packages.
 # RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1
+
+RUN su vscode -c "curl -sSL https://github.com/python-poetry/poetry/raw/master/install-poetry.py | /usr/local/bin/python - --preview" 2>&1

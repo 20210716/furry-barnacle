@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "furry-barnacle"
+version = "0.1.0"
+description = "step by step"
+authors = ["20210716"]
+license = "AGPL-3.0-or-later"
+readme = "README.md"
+packages = [{include = "furry_barnacle"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+diagrams = "^0.20.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.4"
+black = "^21.6-beta.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

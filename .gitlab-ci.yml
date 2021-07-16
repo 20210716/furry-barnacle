@@ -8,8 +8,8 @@ include:
 
 stages:
   - build
-  - test
   - 🐍 Python
+  - test
   - deploy  # dummy stage to follow the template guidelines
   - review
   - dast

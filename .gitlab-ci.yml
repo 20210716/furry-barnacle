@@ -1,2 +1,71 @@
 include:
   - template: Auto-DevOps.gitlab-ci.yml
+
+
+
+
+# borrowing python tests from https://gitlab.com/gitlab-data/analytics/-/blob/master/.gitlab-ci.yml
+
+stages:
+  - build
+  - test
+  - 🐍 Python
+  - deploy  # dummy stage to follow the template guidelines
+  - review
+  - dast
+  - staging
+  - canary
+  - production
+  - incremental rollout 10%
+  - incremental rollout 25%
+  - incremental rollout 50%
+  - incremental rollout 100%
+  - performance
+  - cleanup
+
+.python_check: &python_check
+  stage: 🐍 Python
+  image: registry.gitlab.com/gitlab-data/data-image/data-image:v0.0.13
+  # rules:
+  #   - changes:
+  #     - "**/*.py"
+  allow_failure: true
+
+python_black:
+  <<: *python_check
+  script:
+    - pip install black
+    - black --check .
+
+python_mypy:
+  <<: *python_check
+  script:
+    - pip install mypy
+    - python3 -m pip install types-python-dateutil
+    - python3 -m pip install types-PyYAML
+    - python3 -m pip install types-requests
+    - mypy extract/ --ignore-missing-imports
+
+python_pylint:
+  <<: *python_check
+  script:
+    - pylint ../analytics/ --ignore=dags --disable=C --disable=W1203 --disable=W1202 --reports=y --exit-zero
+  # rules:
+  #   - when: manual
+
+python_complexity:
+  <<: *python_check
+  script:
+    -  xenon --max-absolute B --max-modules A --max-average A . -i transform,shared_modules
+
+python_pytest:
+  <<: *python_check
+  script:
+    - python -m pytest -vv -x --no-print-logs --junitxml=report.xml
+  artifacts:
+    reports:
+        junit: ${CI_PROJECT_DIR}/report.xml
+    paths:
+        - ${CI_PROJECT_DIR}/.coverage.${CI_JOB_ID}
+    expire_in: 1 day
+    when: on_success

@@ -50,6 +50,7 @@ python_mypy:
 python_pylint:
   <<: *python_check
   script:
+    - pip install pylint
     - pylint ../analytics/ --ignore=dags --disable=C --disable=W1203 --disable=W1202 --reports=y --exit-zero
   # rules:
   #   - when: manual
@@ -57,11 +58,13 @@ python_pylint:
 python_complexity:
   <<: *python_check
   script:
-    -  xenon --max-absolute B --max-modules A --max-average A . -i transform,shared_modules
+    - pip install xenon
+    - xenon --max-absolute B --max-modules A --max-average A . -i transform,shared_modules
 
 python_pytest:
   <<: *python_check
   script:
+    - pip install pytest
     - python -m pytest -vv -x --no-print-logs --junitxml=report.xml
   artifacts:
     reports:

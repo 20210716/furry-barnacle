@@ -45,13 +45,13 @@ python_mypy:
     - python3 -m pip install types-python-dateutil
     - python3 -m pip install types-PyYAML
     - python3 -m pip install types-requests
-    - mypy fuzzy_barnacle --ignore-missing-imports
+    - mypy furry_barnacle --ignore-missing-imports
 
 python_pylint:
   <<: *python_check
   script:
     - pip install pylint
-    - pylint fuzzy_barnacle --ignore=dags --disable=C --disable=W1203 --disable=W1202 --reports=y --exit-zero
+    - pylint furry_barnacle --ignore=dags --disable=C --disable=W1203 --disable=W1202 --reports=y --exit-zero
   # rules:
   #   - when: manual
 

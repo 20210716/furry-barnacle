@@ -26,7 +26,7 @@ stages:
 .python_check: &python_check
   stage: 🐍 Python
   needs: []
-  image: registry.gitlab.com/gitlab-data/data-image/data-image:v0.0.13
+  image: python:3
   # rules:
   #   - changes:
   #     - "**/*.py"

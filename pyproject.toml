@@ -10,6 +10,8 @@ packages = [{include = "furry_barnacle"}]
 [tool.poetry.dependencies]
 python = "^3.9"
 diagrams = "^0.20.0"
+peewee = "^3.14.4"
+psycopg2 = "^2.9.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.4"

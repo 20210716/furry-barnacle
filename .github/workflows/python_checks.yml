@@ -27,4 +27,4 @@ jobs:
       - name: Install dependencies
         run: poetry install
       - name: Check ${{ matrix.check }}
-        run: sh -x .ci/python_check_${{ matrix.check }}.sh furry_barnacle tests
+        run: sh -e -u -x .ci/python_check_${{ matrix.check }}.sh furry_barnacle tests

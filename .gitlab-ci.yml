@@ -31,31 +31,33 @@ stages:
   #   - changes:
   #     - "**/*.py"
   allow_failure: true
+  before_script:
+    - curl -sSL https://github.com/python-poetry/poetry/raw/master/install-poetry.py | python3 - --preview
 
 python_check_style:
   <<: *python_check
   script:
-    - sh .ci/python_check_style.sh furry_barnacle tests
+    - sh -e -u -x .ci/python_check_style.sh furry_barnacle tests
 
 python_check_static_typing:
   <<: *python_check
   script:
-    - sh .ci/python_check_static_typing.sh furry_barnacle tests
+    - sh -e -u -x .ci/python_check_static_typing.sh furry_barnacle tests
 
 python_check_linter:
   <<: *python_check
   script:
-    - sh .ci/python_check_linter.sh furry_barnacle tests
+    - sh -e -u -x .ci/python_check_linter.sh furry_barnacle tests
 
 python_check_complexity:
   <<: *python_check
   script:
-    - sh .ci/python_check_complexity.sh furry_barnacle tests
+    - sh -e -u -x .ci/python_check_complexity.sh furry_barnacle tests
 
 python_check_tests:
   <<: *python_check
   script:
-    - sh .ci/python_check_tests.sh furry_barnacle tests
+    - sh -e -u -x .ci/python_check_tests.sh furry_barnacle tests
   artifacts:
     reports:
         junit: ${CI_PROJECT_DIR}/report.xml

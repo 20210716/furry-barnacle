@@ -18,6 +18,9 @@ black = "^21.6-beta.0"
 mypy = "^0.910"
 pylint = "^2.9.3"
 pytest = "^6.2.4"
+types-python-dateutil = "^0.1.4"
+types-PyYAML = "^5.4.3"
+types-requests = "^2.25.0"
 xenon = "^0.7.3"
 
 [build-system]

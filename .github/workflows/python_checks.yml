@@ -16,12 +16,15 @@ jobs:
           - tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup python
+        uses: actions/setup-python@v2
         with:
           python-version: 3.9
-      - uses: Gr1N/setup-poetry@v7
-      - name: install dependencies
+      - name: Setup poetry
+        uses: Gr1N/setup-poetry@v7
+      - name: Install dependencies
         run: poetry install
-      - name: ${{ matrix.check }}
+      - name: Check ${{ matrix.check }}
         run: sh .ci/python_check_${{ matrix.check }}.sh furry_barnacle tests

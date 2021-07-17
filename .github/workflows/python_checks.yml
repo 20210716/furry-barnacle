@@ -14,7 +14,6 @@ jobs:
           - linter
           - complexity
           - tests
-    runs-on: ${{ matrix.os }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

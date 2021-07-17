@@ -37,31 +37,23 @@ stages:
       curl -sSL https://github.com/python-poetry/poetry/raw/master/install-poetry.py
       | env POETRY_HOME=/usr/local python3 - --preview
     - poetry install
+  script:
+    - sh -e -u -x .ci/${CI_JOB_NAME}.sh furry_barnacle tests
 
 python_check_style:
   <<: *python_check
-  script:
-    - sh -e -u -x .ci/python_check_style.sh furry_barnacle tests
 
 python_check_static_typing:
   <<: *python_check
-  script:
-    - sh -e -u -x .ci/python_check_static_typing.sh furry_barnacle tests
 
 python_check_linter:
   <<: *python_check
-  script:
-    - sh -e -u -x .ci/python_check_linter.sh furry_barnacle tests
 
 python_check_complexity:
   <<: *python_check
-  script:
-    - sh -e -u -x .ci/python_check_complexity.sh furry_barnacle tests
 
 python_check_tests:
   <<: *python_check
-  script:
-    - sh -e -u -x .ci/python_check_tests.sh furry_barnacle tests
   artifacts:
     reports:
         junit: ${CI_PROJECT_DIR}/report.xml

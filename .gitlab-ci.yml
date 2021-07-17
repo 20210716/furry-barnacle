@@ -32,6 +32,7 @@ stages:
   #     - "**/*.py"
   allow_failure: true
   before_script:
+    - apt update -y && apt upgrade -y
     - >
       curl -sSL https://github.com/python-poetry/poetry/raw/master/install-poetry.py
       | env POETRY_HOME=/usr/local python3 - --preview

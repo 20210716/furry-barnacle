@@ -20,5 +20,7 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: 3.9
+      - name: install dependencies
+        run: poetry install
       - name: ${{ matrix.check }}
         run: sh .ci/python_check_${{ matrix.check }}.sh furry_barnacle tests

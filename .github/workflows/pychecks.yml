@@ -7,9 +7,20 @@ on:
     branches: [ $default-branch ]
 jobs:
   checks:
+    strategy:
+      matrix:
+        check:
+          - style
+          - static_typing
+          - linter
+          - complexity
+          - tests
+    runs-on: ${{ matrix.os }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
-      with:
-        python-version: 3.9
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: ${{ matrix.check }}
+        run: sh .ci/python_check_${{ matrix.check }}.sh furry_barnacle tests

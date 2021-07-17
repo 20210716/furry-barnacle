@@ -33,6 +33,8 @@ stages:
   allow_failure: true
   before_script:
     - curl -sSL https://github.com/python-poetry/poetry/raw/master/install-poetry.py | python3 - --preview
+    - which poetry
+    - poetry --version
 
 python_check_style:
   <<: *python_check

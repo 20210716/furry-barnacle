@@ -24,6 +24,13 @@ jobs:
           python-version: 3.9
       - name: Setup poetry
         uses: Gr1N/setup-poetry@v7
+        with:
+          poetry-preview: true
+      - name: Cache for poetry
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pypoetry/virtualenvs
+          key: ${{ runner.os }}-poetry-${{ hashFiles('poetry.lock') }}
       - name: Install dependencies
         run: poetry install
       - name: Check ${{ matrix.check }}

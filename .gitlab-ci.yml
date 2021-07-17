@@ -32,7 +32,7 @@ stages:
   #     - "**/*.py"
   allow_failure: true
   before_script:
-    - curl -sSL https://github.com/python-poetry/poetry/raw/master/install-poetry.py | python3 - --preview
+    - env POETRY_HOME=/usr/local curl -sSL https://github.com/python-poetry/poetry/raw/master/install-poetry.py | python3 - --preview
     - which poetry
     - poetry --version
 

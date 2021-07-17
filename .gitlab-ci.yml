@@ -35,8 +35,7 @@ stages:
     - >
       curl -sSL https://github.com/python-poetry/poetry/raw/master/install-poetry.py
       | env POETRY_HOME=/usr/local python3 - --preview
-    - which poetry
-    - poetry --version
+    - poetry install
 
 python_check_style:
   <<: *python_check

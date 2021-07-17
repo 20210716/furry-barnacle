@@ -14,8 +14,11 @@ peewee = "^3.14.4"
 psycopg2 = "^2.9.1"
 
 [tool.poetry.dev-dependencies]
-pytest = "^6.2.4"
 black = "^21.6-beta.0"
+mypy = "^0.910"
+pylint = "^2.9.3"
+pytest = "^6.2.4"
+xenon = "^0.7.3"
 
 [build-system]
 requires = ["poetry-core"]
